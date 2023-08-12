@@ -1,4 +1,4 @@
-# Django Python Boilerplate
+# Django Poetry Boilerplate
 
 ## Description
 Use this boilerplate to quickly start a Django project with a PostgreSQL database, poetry and docker setup.
