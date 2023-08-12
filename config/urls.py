@@ -17,11 +17,32 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularRedocView,
+    SpectacularSwaggerView,
+)
+
+schema_urls = [
+    # YOUR PATTERNS
+    path("api/v1/schema/", SpectacularAPIView.as_view(), name="schema"),
+    # Optional UI:
+    path(
+        "api/v1/schema/swagger/",
+        SpectacularSwaggerView.as_view(url_name="schema"),
+        name="swagger",
+    ),
+    path(
+        "api/v1/schema/redoc/",
+        SpectacularRedocView.as_view(url_name="schema"),
+        name="redoc",
+    ),
+]
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("apps.common.urls")),
-]
+] + schema_urls
 
 if settings.DEBUG:
     import debug_toolbar
